@@ -1,5 +1,5 @@
 {
-  "name": "query-2-query",
+  "name": "query2query-js",
   "version": "0.0.1",
   "description": "A simple utility for converting a JSON representation of a query string into a SQL where clause.",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mattdknapp/query-2-query.git"
+    "url": "git+https://github.com/mattdknapp/query2query-js.git"
   },
   "author": "Matthew Knapp <matthew.knapp@tma1.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mattdknapp/query-2-query/issues"
+    "url": "https://github.com/mattdknapp/query2query-js/issues"
   },
-  "homepage": "https://github.com/mattdknapp/query-2-query#readme"
+  "homepage": "https://github.com/mattdknapp/query2query-js#readme"
 }
