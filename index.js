@@ -35,7 +35,7 @@ const entriesToQuery = opts => (acc, next) => {
     const {
       clause,
       value,
-    } = createClause(next, 1)
+    } = createClause(next, 0)
 
     const text = `WHERE ${scopeString}${clause}`
     const values = [ value ]
