@@ -1,17 +1,28 @@
 const translators = require('./translators')
 
-const getScopeString = ({ nameSpace }) => {
-  if(nameSpace) {
-    return `${nameSpace}.`
+const getScopeString = ({ namespace }) => {
+  if(namespace) {
+    return `${namespace}.`
   }
 
   return ''
 }
 
-const entriesToQuery = opts => (acc, next, index) => {
+const entriesToQuery = opts => (acc, next) => {
+  const {
+    whiteList,
+  } = opts
+
   const [
     key,
   ] = next
+
+  const keyIsApproved = !!opts[key]
+
+  if(whiteList && !keyIsApproved) {
+    console.warn(`From query2query-js: ${key} has not been whitelisted and is therefore ignored`)
+    return acc
+  }
 
   const optsForKey = opts[key] || {}
 
@@ -24,7 +35,7 @@ const entriesToQuery = opts => (acc, next, index) => {
     const {
       clause,
       value,
-    } = createClause(next, index)
+    } = createClause(next, 1)
 
     const text = `WHERE ${scopeString}${clause}`
     const values = [ value ]
@@ -38,7 +49,7 @@ const entriesToQuery = opts => (acc, next, index) => {
   const {
     clause,
     value,
-  } = createClause(next, index)
+  } = createClause(next, acc.values.length)
 
   const text = `${acc.text} AND ${scopeString}${clause}`
   const values = [
