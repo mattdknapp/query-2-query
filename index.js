@@ -69,7 +69,7 @@ const createQuery = (query = {}, opts = {}) => {
     previusQuery = null,
   } = opts
 
-  return entries.reduce(entriesToQuery(opts), previusQuery)
+  return entries.reduce(entriesToQuery(opts), previusQuery) || {}
 }
 
 module.exports = createQuery
