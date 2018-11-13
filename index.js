@@ -9,9 +9,20 @@ const getScopeString = ({ nameSpace }) => {
 }
 
 const entriesToQuery = opts => (acc, next, index) => {
+  const {
+    whiteList,
+  } = opts
+
   const [
     key,
   ] = next
+
+  const keyIsApproved = !!opts[key]
+
+  if(whiteList && !keyIsApproved) {
+    console.warn(`From query2query-js: ${key} has not been whitelisted and is therefore ignored`)
+    return acc
+  }
 
   const optsForKey = opts[key] || {}
 
@@ -38,7 +49,7 @@ const entriesToQuery = opts => (acc, next, index) => {
   const {
     clause,
     value,
-  } = createClause(next, index)
+  } = createClause(next, acc.values.length)
 
   const text = `${acc.text} AND ${scopeString}${clause}`
   const values = [

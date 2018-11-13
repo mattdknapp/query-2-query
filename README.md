@@ -22,9 +22,12 @@ of an object.
 
 ### The Options Object
 
-There is a single top level option of `previousQuery`. If provided
-`query2query-js` will start the generated query using `AND` instead of `WHERE`
-and will append it's results to the string supplied.
+There are two top level options available the first of which is
+`previusQuery`. If provided `query2query-js` will start the generated query
+using `AND` instead of `WHERE` and will append it's results to the string
+supplied. The second option is `whiteList`. If `whiteList` is a truthy value
+any query string key that does not have a coresponding key in the `options`
+object will be ignored when the query is created.
 
 There are several configurations that can be nested inside of the options
 object. These configurations must have the same key as their equivalent in the
