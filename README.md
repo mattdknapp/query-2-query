@@ -1,21 +1,21 @@
-# query-2-query
+# query2query-js
 
 ## About
 
-`query-2-query` is a simple utility for converting a JSON representation of a
+`query2query-js` is a simple utility for converting a JSON representation of a
 query string into a SQL where clause. The package is designed to be used with
 `express` and `pg` but may be useful in other contexts as well.
 
 ## Installation
 
-To install `query-2-query` simply run the following command:
-`npm install --save query-2-query`
+To install `query2query-js` simply run the following command:
+`npm install --save query2query-js`
 
-NOTE: `query-2-query` is not the same package as `query2query`.
+NOTE: `query2query-js` is not the same package as `query2query`.
 
 ## Usage
 
-`query-2-query` expects two arguments when called. The first argument is the
+`query2query-js` expects two arguments when called. The first argument is the
 JSON representation of the query string you desire to parse. The second is a set
 of optional instructions on how to translate the values into SQL in the form
 of an object.
@@ -23,7 +23,7 @@ of an object.
 ### The Options Object
 
 There is a single top level option of `previousQuery`. If provided
-`query-2-query` will start the generated query using `AND` instead of `WHERE`
+`query2query-js` will start the generated query using `AND` instead of `WHERE`
 and will append it's results to the string supplied.
 
 There are several configurations that can be nested inside of the options
@@ -37,7 +37,7 @@ provided query string to take affect. The options are listed below:
 
 ### Match Types
 
-`query-2-query` provides several options to format what the segment of a query
+`query2query-js` provides several options to format what the segment of a query
 will look like. These options can be provided as the `type` attribute of the
 options object as described above.
 
@@ -50,7 +50,7 @@ options object as described above.
 ## Example
 
 ```
-const q2q = require('query-2-query')
+const q2q = require('query2query-js')
 
 const optionsObject = {
   id: { type: 'integer', nameSpace: 'u' },
