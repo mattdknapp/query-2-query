@@ -1,14 +1,14 @@
 const translators = require('./translators')
 
-const getScopeString = ({ nameSpace }) => {
-  if(nameSpace) {
-    return `${nameSpace}.`
+const getScopeString = ({ namespace }) => {
+  if(namespace) {
+    return `${namespace}.`
   }
 
   return ''
 }
 
-const entriesToQuery = opts => (acc, next, index) => {
+const entriesToQuery = opts => (acc, next) => {
   const {
     whiteList,
   } = opts
@@ -35,7 +35,7 @@ const entriesToQuery = opts => (acc, next, index) => {
     const {
       clause,
       value,
-    } = createClause(next, index)
+    } = createClause(next, 1)
 
     const text = `WHERE ${scopeString}${clause}`
     const values = [ value ]

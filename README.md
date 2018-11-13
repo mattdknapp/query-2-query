@@ -35,7 +35,7 @@ provided query string to take affect. The options are listed below:
 
 | option | description |
 |--------|-------------|
-| nameSpace | A name space to scope the item under in the created query |
+| namespace | A name space to scope the item under in the created query |
 | type | The type of match desired |
 
 ### Match Types
@@ -56,7 +56,7 @@ options object as described above.
 const q2q = require('query2query-js')
 
 const optionsObject = {
-  id: { type: 'integer', nameSpace: 'u' },
+  id: { type: 'integer', namespace: 'u' },
   userEmail: { type: 'exact' }
 }
 
