@@ -1,6 +1,6 @@
 {
   "name": "query2query-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple utility for converting a JSON representation of a query string into a SQL where clause.",
   "main": "index.js",
   "scripts": {
