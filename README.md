@@ -43,7 +43,7 @@ options object as described above.
 
 | type | description | SQL |
 |------|-------------|-----|
-| string | A string ilike search. NOTE: default if no value is provded | `some_item ILIKE $1` |
+| string | A string ilike search. NOTE: default if no value is provided | `some_item ILIKE $1` |
 | integer | An exact match for an integer. | `id = $1` |
 | exact | An exact match for a string. | `name = $1`
 
