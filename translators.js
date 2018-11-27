@@ -40,8 +40,26 @@ const createExact = (entry, index) => {
   }
 }
 
+const createIn = (entry, startIndex) => {
+  const [
+    key,
+    value
+  ] = entry
+
+  const snakeKey = camelToSnake(key)
+  const indexArray = value.map((item, index) =>  `$${index + startIndex + 1}`)
+  const indexString = indexArray.join(',')
+  const clause = `${snakeKey} IN (${indexString})`
+
+  return {
+    clause,
+    value,
+  }
+}
+
 module.exports = {
   integer: createExact,
   exact: createExact,
   string: createILike,
+  array: createIn,
 }

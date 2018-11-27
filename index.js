@@ -54,8 +54,8 @@ const entriesToQuery = opts => (acc, next) => {
   const text = `${acc.text} AND ${scopeString}${clause}`
   const values = [
     ...acc.values,
-    value
-  ]
+    value,
+  ].flat()
 
   return {
     text,
