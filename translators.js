@@ -32,6 +32,15 @@ const createExact = (entry, index) => {
   ] = entry
 
   const snakeKey = camelToSnake(key)
+
+  if(value === null) {
+    const clause = `${snakeKey} IS NOT $${index + 1}`
+    return {
+      clause,
+      value,
+    }
+  }
+
   const clause = `${snakeKey} = $${index + 1}`
 
   return {
