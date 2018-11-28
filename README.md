@@ -49,6 +49,7 @@ options object as described above.
 | string | A string ilike search. NOTE: default if no value is provided | `some_item ILIKE $1` |
 | integer | An exact match for an integer. | `id = $1` |
 | exact | An exact match for a string. | `name = $1`
+| array | An array of string values. NOTE: does not currently work with integer values| `name IN ($1,$2,$3,$4,...)`
 
 ## Example
 
@@ -58,20 +59,22 @@ const q2q = require('query2query-js')
 const optionsObject = {
   id: { type: 'integer', namespace: 'u' },
   userEmail: { type: 'exact' }
+  userHobbies: { type: 'array' }
 }
 
 const queryString = {
   id: 1,
   userName: 'Bob',
   userEmail: 'bob@exactlythis.com'
+  userHobbies: ['swimming', 'running', 'polka']
 }
 
 q2q(queryString, optionsObject)
 
 //output
 { 
-  text: 'WHERE u.id = $1 AND user_name ILIKE $2 AND user_email = $3',
-  values: [ 1, 'Bob%', 'bob@exactlythis.com' ]
+  text: 'WHERE u.id = $1 AND user_name ILIKE $2 AND user_email = $3 AND user_hobbies IN ($4,$5,$6)',
+  values: [ 1, 'Bob%', 'bob@exactlythis.com', 'swimming', 'running', 'polka' ]
 }
 
 ```
