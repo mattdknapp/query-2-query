@@ -47,13 +47,14 @@ const createIn = (entry, startIndex) => {
   ] = entry
 
   const snakeKey = camelToSnake(key)
-  const indexArray = value.map((item, index) =>  `$${index + startIndex + 1}`)
+  const valueArray = value.split(',')
+  const indexArray = valueArray.map((item, index) =>  `$${index + startIndex + 1}`)
   const indexString = indexArray.join(',')
   const clause = `${snakeKey} IN (${indexString})`
 
   return {
     clause,
-    value,
+    value: valueArray,
   }
 }
 

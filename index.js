@@ -1,4 +1,5 @@
 const translators = require('./translators')
+const flat = require('./lib/flat')
 
 const getScopeString = ({ namespace }) => {
   if(namespace) {
@@ -38,7 +39,7 @@ const entriesToQuery = opts => (acc, next) => {
     } = createClause(next, 0)
 
     const text = `WHERE ${scopeString}${clause}`
-    const values = [ value ]
+    const values = flat([ value ])
 
     return {
       text,
@@ -52,10 +53,10 @@ const entriesToQuery = opts => (acc, next) => {
   } = createClause(next, acc.values.length)
 
   const text = `${acc.text} AND ${scopeString}${clause}`
-  const values = [
+  const values = flat([
     ...acc.values,
     value,
-  ].flat()
+  ])
 
   return {
     text,
