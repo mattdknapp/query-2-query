@@ -104,9 +104,8 @@ const queryString2 = {
 q2q(queryString, optionsObject)
 
 //output
-{ 
-  text: 'WHERE u.id = $1 AND user_name ILIKE $2 AND user_email = $3 AND user_hobbies IN ($4,$5,$6)',
+{
+  text: 'WHERE u.id = $1 AND user_name ILIKE $2 AND user_email = $3 AND user_hobbies IN ($4,$5,$6) ORDER BY u.id ASC',
   values: [ 1, 'Bob%', 'bob@exactlythis.com', 'swimming', 'running', 'polka' ]
 }
-
 ```
