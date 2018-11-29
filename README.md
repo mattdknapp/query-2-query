@@ -22,12 +22,19 @@ of an object.
 
 ### The Options Object
 
-There are two top level options available the first of which is
+There are three top level options available the first of which is
 `previusQuery`. If provided `query2query-js` will start the generated query
 using `AND` instead of `WHERE` and will append it's results to the string
 supplied. The second option is `whiteList`. If `whiteList` is a truthy value
 any query string key that does not have a coresponding key in the `options`
-object will be ignored when the query is created.
+object will be ignored when the query is created. The third option is `sort`.
+If present `sort` should be an array of objects that have the following
+attributes:
+
+| attribute | description |
+|-----------|-------------|
+| key | A column name on which sorting is allowed |
+| namespace | An optional namespace to scope the key under in the created sort statement |
 
 There are several configurations that can be nested inside of the options
 object. These configurations must have the same key as their equivalent in the
