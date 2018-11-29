@@ -53,9 +53,10 @@ to one of the keys provided in the `sort` options array. `sortOrder` is
 expected to be one of two string options: `ASC` or `DESC`.
 
 #### Search Params
-There are several configurations that can be nested inside of the options
-object. These configurations must have the same key as their equivalent in the
-provided query string to take affect. The options are listed below:
+All other attributes found in the options object will be assumed to be
+descriptions of allowed search criteria. The attribute keys should be the
+coresponding camel case value of a snake case column in your databasse schema.
+The value of the attribute should be an object with the following attributes:
 
 | option | description |
 |--------|-------------|
