@@ -5,13 +5,14 @@ const createQuery = (query = {}, opts = {}) => {
   const entries = Object.entries(query)
   const {
     previusQuery = null,
+    ...filteredOpts,
   } = opts
 
-  const sortOrder = createSortString(query, opts)
+  const sortOrder = createSortString(query, filteredOpts)
   const {
     text,
     values,
-  } = entries.reduce(entriesToQuery(opts), previusQuery) || {}
+  } = entries.reduce(entriesToQuery(filteredOpts), previusQuery) || {}
 
   return {
     text: `${text}${sortOrder}`,
