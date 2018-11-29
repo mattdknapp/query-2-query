@@ -5,7 +5,7 @@ const createQuery = (query = {}, opts = {}) => {
   const entries = Object.entries(query)
   const {
     previusQuery = null,
-    ...filteredOpts,
+    ...filteredOpts
   } = opts
 
   const sortOrder = createSortString(query, filteredOpts)
