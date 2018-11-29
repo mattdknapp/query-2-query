@@ -92,11 +92,13 @@ const optionsObject = {
   ],
 }
 
-const queryString = {
+const queryString2 = {
   id: 1,
   userName: 'Bob',
   userEmail: 'bob@exactlythis.com',
-  userHobbies: ['swimming', 'running', 'polka']
+  userHobbies: ['swimming', 'running', 'polka'],
+  sort: 'id',
+  sortOrder: 'ASC',
 }
 
 q2q(queryString, optionsObject)
