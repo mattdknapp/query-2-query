@@ -22,28 +22,45 @@ of an object.
 
 ### The Options Object
 
-There are three top level options available the first of which is
+#### `previusQuery`
+There are three fixed top level options available, the first of which is
 `previusQuery`. If provided `query2query-js` will start the generated query
 using `AND` instead of `WHERE` and will append it's results to the string
-supplied. The second option is `whiteList`. If `whiteList` is a truthy value
-any query string key that does not have a coresponding key in the `options`
-object will be ignored when the query is created. The third option is `sort`.
-If present `sort` should be an array of objects that have the following
-attributes:
+supplied by the `previusQuery` attribute.
+
+#### `whiteList`
+The second option is `whiteList`. If `whiteList` is a truthy value any query
+string key that does not have a coresponding key in the `options` object will be
+ignored when the query is created. Whitelist has a default value of `true`.
+
+NOTE: _Always_ use `whiteList: true` for anything besides debugging/development
+as it would leave you open to SQL injection attacks otherwise.
+
+#### `sort`
+The third option is `sort`. This option is used to obtain the desired order of
+the generated query. If present `sort` should be an array of objects that have
+the following attributes:
 
 | attribute | description |
 |-----------|-------------|
 | key | A column name on which sorting is allowed |
-| namespace | An optional namespace to scope the key under in the created sort statement |
+| namespace | An optional namespace to scope the key under in the created sort statement. |
 
+The column and direction of `sort` will be derived from reading the options
+`sort` and `sortOrder` from the query string object. The `sort` attribute of
+the query string object will be expected to be a string value that coresponds
+to one of the keys provided in the `sort` options array. `sortOrder` is
+expected to be one of two string options: `ASC` or `DESC`.
+
+#### Search Params
 There are several configurations that can be nested inside of the options
 object. These configurations must have the same key as their equivalent in the
 provided query string to take affect. The options are listed below:
 
 | option | description |
 |--------|-------------|
-| namespace | A name space to scope the item under in the created query |
-| type | The type of match desired |
+| namespace | A name space to scope the item under in the created query. |
+| type | The type of match desired. Options described below. |
 
 ### Match Types
 
@@ -64,15 +81,21 @@ options object as described above.
 const q2q = require('query2query-js')
 
 const optionsObject = {
+  whiteList: true,
   id: { type: 'integer', namespace: 'u' },
-  userEmail: { type: 'exact' }
-  userHobbies: { type: 'array' }
+  userName: { type: 'string' },
+  userEmail: { type: 'exact' },
+  userHobbies: { type: 'array' },
+  sort : [
+    { key: 'id', namespace: 'u' },
+    { key: 'userEmail' },
+  ],
 }
 
 const queryString = {
   id: 1,
   userName: 'Bob',
-  userEmail: 'bob@exactlythis.com'
+  userEmail: 'bob@exactlythis.com',
   userHobbies: ['swimming', 'running', 'polka']
 }
 
